@@ -1,0 +1,6 @@
+{
+  "name": "node-scripts",
+  "version": "1.0.0",
+  "license": "MIT",
+  "packageManager": "yarn@3.2.0"
+}

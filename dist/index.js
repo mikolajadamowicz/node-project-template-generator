@@ -1,10 +1,22 @@
 #!/usr/bin/env node
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
     return result;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
@@ -17,26 +29,26 @@ const inquirer = __importStar(require("inquirer"));
 const chalk_1 = __importDefault(require("chalk"));
 const template = __importStar(require("./utils/template"));
 const shell = __importStar(require("shelljs"));
-const CHOICES = fs.readdirSync(path.join(__dirname, 'templates'));
+const CHOICES = fs.readdirSync(path.join(__dirname, "templates"));
 const QUESTIONS = [
     {
-        name: 'template',
-        type: 'list',
-        message: 'What template would you like to use?',
-        choices: CHOICES
+        name: "template",
+        type: "list",
+        message: "What template would you like to use?",
+        choices: CHOICES,
     },
     {
-        name: 'name',
-        type: 'input',
-        message: 'Please input a new project name:'
-    }
+        name: "name",
+        type: "input",
+        message: "Please input a new project name:",
+    },
 ];
 const CURR_DIR = process.cwd();
-inquirer.prompt(QUESTIONS).then(answers => {
-    const projectChoice = answers['template'];
-    const projectName = answers['name'];
+inquirer.prompt(QUESTIONS).then((answers) => {
+    const projectChoice = answers["template"];
+    const projectName = answers["name"];
     //@ts-ignore
-    const templatePath = path.join(__dirname, 'templates', projectChoice);
+    const templatePath = path.join(__dirname, "templates", projectChoice);
     //@ts-ignore
     const tartgetPath = path.join(CURR_DIR, projectName);
     const options = {
@@ -45,7 +57,7 @@ inquirer.prompt(QUESTIONS).then(answers => {
         //@ts-ignore
         templateName: projectChoice,
         templatePath,
-        tartgetPath
+        tartgetPath,
     };
     if (!createProject(tartgetPath)) {
         return;
@@ -62,12 +74,12 @@ function createProject(projectPath) {
     fs.mkdirSync(projectPath);
     return true;
 }
-const SKIP_FILES = ['node_modules', '.template.json'];
+const SKIP_FILES = ["node_modules", ".template.json"];
 function createDirectoryContents(templatePath, projectName) {
     // read all files/folders (1 level) from template folder
     const filesToCreate = fs.readdirSync(templatePath);
     // loop each file/folder
-    filesToCreate.forEach(file => {
+    filesToCreate.forEach((file) => {
         const origFilePath = path.join(templatePath, file);
         // get stats about the current file
         const stats = fs.statSync(origFilePath);
@@ -76,11 +88,11 @@ function createDirectoryContents(templatePath, projectName) {
             return;
         if (stats.isFile()) {
             // read file content and transform it using template engine
-            let contents = fs.readFileSync(origFilePath, 'utf8');
+            let contents = fs.readFileSync(origFilePath, "utf8");
             contents = template.render(contents, { projectName });
             // write file to destination folder
             const writePath = path.join(CURR_DIR, projectName, file);
-            fs.writeFileSync(writePath, contents, 'utf8');
+            fs.writeFileSync(writePath, contents, "utf8");
         }
         else if (stats.isDirectory()) {
             // create folder in destination folder
@@ -91,10 +103,10 @@ function createDirectoryContents(templatePath, projectName) {
     });
 }
 function postProcess(options) {
-    const isNode = fs.existsSync(path.join(options.templatePath, 'package.json'));
+    const isNode = fs.existsSync(path.join(options.templatePath, "package.json"));
     if (isNode) {
         shell.cd(options.tartgetPath);
-        const result = shell.exec('npm install');
+        const result = shell.exec("yarn");
         if (result.code !== 0) {
             return false;
         }
