@@ -108,10 +108,10 @@ function postProcess(options: CliOptions) {
   const isNode = fs.existsSync(path.join(options.templatePath, "package.json"));
   if (isNode) {
     shell.cd(options.tartgetPath);
-    // const result = shell.exec("yarn");
-    // if (result.code !== 0) {
-    //   return false;
-    // }
+    const result = shell.exec("yarn dlx @yarnpkg/sdks vscode");
+    if (result.code !== 0) {
+      return false;
+    }
   }
 
   return true;

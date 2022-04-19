@@ -1,0 +1,27 @@
+{
+	"name": "<%= projectName %>",
+	"version": "1.0.0",
+	"license": "MIT",
+	"main": "src/index.js",
+	"scripts": {
+		"build": "babel src -d dist",
+		"start": "yarn build && node dist/index.js",
+		"test:all": "jest --verbose ./__tests__",
+		"test": "jest --verbose ",
+		"start:test": "yarn build && node",
+		"lint": "eslint ./src --max-warnings 0",
+		"lint:fix": "yarn lint -- --fix"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.17.6",
+		"@babel/core": "^7.17.9",
+		"@babel/preset-env": "^7.16.11",
+		"eslint": "^8.13.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-jest": "^26.1.4",
+		"jest": "^27.5.1",
+		"prettier": "^2.6.2"
+	},
+	"packageManager": "yarn@3.2.0"
+}
