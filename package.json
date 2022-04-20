@@ -1,16 +1,15 @@
 {
   "name": "generate-project-template",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "tsc && shx rm -rf dist/templates && shx cp -r src/templates dist",
-    "publish": "yarn build && npm publish"
+    "publish": "yarn build && npm publish",
+    "clean": "shx rm -rf ./dist/"
   },
-  "bin": {
-    "generate-template": "./dist/index.js"
-  },
+  "bin": "./dist/index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
