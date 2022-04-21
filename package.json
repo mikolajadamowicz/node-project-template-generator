@@ -1,12 +1,12 @@
 {
   "name": "generate-project-template",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "tsc && shx rm -rf dist/templates && shx cp -r src/templates dist",
-    "publish": "yarn build && npm publish",
+    "publish": "npm publish",
     "clean": "shx rm -rf ./dist/"
   },
   "bin": "./dist/index.js",
