@@ -6,8 +6,8 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "tsc && shx rm -rf dist/templates && shx cp -r src/templates dist",
-    "publish": "npm publish",
-    "clean": "shx rm -rf ./dist/"
+    "clean": "shx rm -rf ./dist/",
+    "version": "npm version"
   },
   "bin": "./dist/index.js",
   "keywords": [],
