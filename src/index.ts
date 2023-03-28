@@ -108,10 +108,11 @@ function postProcess(options: CliOptions) {
   const isNode = fs.existsSync(path.join(options.templatePath, "package.json"));
   if (isNode) {
     shell.cd(options.tartgetPath);
-    const result = shell.exec("yarn dlx @yarnpkg/sdks vscode");
-    if (result.code !== 0) {
-      return false;
-    }
+    //Hack for vscode in yarn 3
+    // const result = shell.exec("yarn dlx @yarnpkg/sdks vscode");
+    // if (result.code !== 0) {
+    //   return false;
+    // }
   }
 
   return true;

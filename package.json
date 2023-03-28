@@ -1,18 +1,21 @@
 {
   "name": "generate-project-template",
-  "version": "0.0.8",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.10",
+  "description": "Build your own custom project templates with this project template generator from anywhere on your machine.",
+  "main": "./dist/index.js",
+  "bin": "./dist/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "start:test": "node dist/index.js",
     "build": "tsc && shx rm -rf dist/templates && shx cp -r src/templates dist",
     "clean": "shx rm -rf ./dist/",
-    "version": "npm version"
+    "version": "npm version",
+    "pack": "npm pack",
+    "publish": "build && npm publish && clean"
   },
-  "bin": "./dist/index.js",
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Mikolaj Adamowicz",
+  "license": "MIT",
   "devDependencies": {
     "@types/chalk": "^2.2.0",
     "@types/ejs": "^3.0.2",
@@ -29,6 +32,5 @@
     "ejs": "^3.1.6",
     "inquirer": "^8.2.2",
     "shelljs": "^0.8.5"
-  },
-  "packageManager": "yarn@3.2.0"
+  }
 }
