@@ -1,6 +1,6 @@
 {
   "name": "generate-project-template",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "description": "Build your own custom project templates with this project template generator from anywhere on your machine.",
   "main": "./dist/index.js",
   "bin": "./dist/index.js",
