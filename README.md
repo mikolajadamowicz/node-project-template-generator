@@ -44,7 +44,7 @@ Register generate-template as a command line interface
 ## Publish it to npm
 
 ```bash
-1. run yarn version to check versioning
+1. run yarn version to check versioning and update version
 2. run yarn pack to check packaging
 3. run yarn publish to publish your package
 2. When successful you can run "npx generate-project-template" on any machine!
